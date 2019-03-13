@@ -3,53 +3,48 @@
 PImage backGround,soil,life,groundHog,soldier,robot;
 
 int soldierX,soldierY;
-int lightX,lightY,lightOverX;
+int lightX,lightY;
 int robotX,robotY;
-int n; //how long the light is
+int n;
 
 
 void setup() {
-  size(640, 480, P2D);
-  backGround=loadImage("bg.jpg"); //put backGround in
-  soil=loadImage("soil.png"); //put soil in
-  life=loadImage("life.png"); //put life in
-  groundHog=loadImage("groundhog.png"); //put groundHog in
+	size(640, 480, P2D);
+	backGround=loadImage("img/bg.jpg"); //put backGround in
+  soil=loadImage("img/soil.png"); //put soil in
+  life=loadImage("img/life.png"); //put life in
+  groundHog=loadImage("img/groundhog.png"); //put groundHog in
   
   //robot
-  robot=loadImage("robot.png"); //put robot in
+  robot=loadImage("img/robot.png"); //put robot in
   robotX=floor(random(240,580)); //put robot on random place in each floor 
   robotY=floor(random(2,5))*80; //put robot on random floor
 
   //soldier
-  soldier=loadImage("soldier.png"); //put soldier in
+  soldier=loadImage("img/soldier.png"); //put soldier in
   soldierX=0; //start place
   soldierY=floor(random(2,5))*80; //put soldier on random floor
   
   //light
   lightX=robotX+25; //start place
   lightY=robotY+37; //start place
-  lightOverX=lightX-185; //how much can light go
 }
 
 
 void draw() {
   image(backGround,0,0); //set backGround
   image(soil,0,160); //set soil
-  
   //life
   image(life,10,10); //left
   image(life,80,10); //middle
   image(life,150,10); //right
-  
   //grass
   colorMode(RGB);
   fill(124,204,25);
   noStroke();
   rect(0,145,640,15);
-  
   //groundHog
   image(groundHog,275,80); //set groundHog
-  
   //sun
   colorMode(RGB); //big yellow one
   fill(255,255,0); //big yellow one
