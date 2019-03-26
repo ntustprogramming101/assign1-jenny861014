@@ -3,9 +3,8 @@
 PImage backGround,soil,life,groundHog,soldier,robot;
 
 int soldierX,soldierY;
-int lightX,lightY;
+int lightX,lightY,lightLength,lightOverX;
 int robotX,robotY;
-int n;
 
 
 void setup() {
@@ -17,13 +16,13 @@ void setup() {
   
   //robot
   robot=loadImage("img/robot.png"); //put robot in
-  robotX=floor(random(240,580)); //put robot on random place in each floor 
-  robotY=floor(random(2,5))*80; //put robot on random floor
+  robotX=floor(random(160,580)); //put robot on random place in each floor 
+  robotY=floor(random(2,6))*80; //put robot on random floor
 
   //soldier
   soldier=loadImage("img/soldier.png"); //put soldier in
   soldierX=0; //start place
-  soldierY=floor(random(2,5))*80; //put soldier on random floor
+  soldierY=floor(random(2,6))*80; //put soldier on random floor
   
   //light
   lightX=robotX+25; //start place
@@ -48,7 +47,7 @@ void draw() {
   //sun
   colorMode(RGB); //big yellow one
   fill(255,255,0); //big yellow one
-  ellipse(590,50,125,125); //big yellow one
+  ellipse(590,50,130,130); //big yellow one
   colorMode(RGB); //little orange one
   fill(253,184,19); //little orange one
   ellipse(590,50,120,120); //little orange one
@@ -64,10 +63,15 @@ void draw() {
   colorMode(RGB); //color
   stroke(255,0,0); //color
   strokeWeight(10); //light's weight
-  line(lightX,lightY,lightX+n,lightY); //light's width
-  lightX-=2; //light's speed
-  if(lightX<robotX+25-185){ //if lightX is smaller than robot+25-185
-    lightX=robotX+25;  //then lightX will be robotX+25
+  line(lightX,lightY,lightX+lightLength,lightY); //light's width
+  if(lightX>=robotX-160){
+    lightX-=2;
+    lightLength+=2;
+    if(lightLength>=40){
+      lightLength=40;
+    }
+  }else{
+    lightX=robotX+25;
+    lightLength=0;
   }
-  n=floor(random(-41));
 }
